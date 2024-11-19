@@ -1,0 +1,8 @@
+- 
+  name: date playbook
+  hosts: servers
+  tasks:
+   - name: show date
+     command: date
+   - name : show uptime
+     command: uptime

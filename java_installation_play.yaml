@@ -1,0 +1,23 @@
+---
+- name: Install Java on Ubuntu
+  hosts: servers
+  become: yes
+  tasks:
+    - name: Update the apt package index
+      apt:
+        update_cache: yes
+
+    - name: Install OpenJDK
+      apt:
+        name: openjdk-11-jdk
+        state: present
+
+    - name: Verify Java installation
+      command: java -version
+      register: java_version_output
+      ignore_errors: yes
+
+    - name: Display Java version
+      debug:
+        msg: "Java version installed: {{ java_version_output.stdout }}"
+
